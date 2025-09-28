@@ -11,7 +11,7 @@
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
     dlistint_t *tmp;
-    unsigned int p = 0;
+    unsigned int i = 0;
 
     if (!head || !*head)
         return (-1);
@@ -19,16 +19,16 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
     tmp = *head;
 
     /* Traverse to the node at index */
-    while (tmp && p < index)
+    while (tmp && i < index)
     {
         tmp = tmp->next;
-        p++;
+        i++;
     }
 
     if (!tmp)
         return (-1);
 
-    /* Deleting the head node */
+    /* If node is head */
     if (!tmp->prev)
     {
         *head = tmp->next;
