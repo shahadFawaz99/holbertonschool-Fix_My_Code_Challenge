@@ -1,18 +1,18 @@
-#include <stdlib.h>
 #include "lists.h"
+#include <stdlib.h>
 
 /**
- * free_dlistint - Free a list
- * @head: Pointer to the first element of the list
+ * free_dlistint - Free all elements of a dlistint_t list
+ * @head: Pointer to the head of the list
  */
 void free_dlistint(dlistint_t *head)
 {
-    dlistint_t *node;
+    dlistint_t *tmp;
 
     while (head)
     {
-        node = head;
-        head = head->next;
-        free(node);
+        tmp = head->next;
+        free(head);
+        head = tmp;
     }
 }

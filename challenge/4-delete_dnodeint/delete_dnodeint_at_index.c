@@ -2,8 +2,7 @@
 #include <stdlib.h>
 
 /**
- * delete_dnodeint_at_index - Delete a node at a specific index from a list
- *
+ * delete_dnodeint_at_index - Delete a node at a specific index
  * @head: Pointer to pointer to the first element of the list
  * @index: The index of the node to delete
  *
@@ -11,10 +10,10 @@
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-    unsigned int p = 0;
     dlistint_t *tmp;
+    unsigned int p = 0;
 
-    if (head == NULL || *head == NULL)
+    if (!head || !*head)
         return (-1);
 
     tmp = *head;
@@ -26,22 +25,21 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
         p++;
     }
 
-    if (tmp == NULL)
+    if (!tmp)
         return (-1);
 
     /* Deleting the head node */
-    if (tmp->prev == NULL)
+    if (!tmp->prev)
     {
         *head = tmp->next;
-        if (*head != NULL)
+        if (*head)
             (*head)->prev = NULL;
     }
     else
     {
-        /* Re-link previous and next nodes in one line each */
-        (*head)->prev->next = (*head)->next;
-        if ((*head)->next != NULL)
-            (*head)->next->prev = (*head)->prev;
+        tmp->prev->next = tmp->next;
+        if (tmp->next)
+            tmp->next->prev = tmp->prev;
     }
 
     free(tmp);
